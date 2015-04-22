@@ -38,7 +38,7 @@ if nargin == 0
 end
 
 % defining file structure for input and output files
-outpath = 'AlignDepth';
+outpath = 'xyzrgb_dragon';
 datapath = ['../Images/' outpath '/'];
 filetype = '.png';
 
@@ -67,10 +67,10 @@ if mode == 0
         for pixHorz=1:width
             
             % ycoordinate of the incoming pixel in multiview img
-            ycor=mod((pixVert-1),5)*individualViewDimension(1)+floor((pixVert-1)/5)+1;
+            ycor=mod((pixVert-1),cameraArraySize(1))*individualViewDimension(1)+floor((pixVert-1)/cameraArraySize(1))+1;
             
             % xcoordinate of the incoming pixel in multiview img
-            xcor=mod((pixHorz-1),5)*individualViewDimension(2)+floor((pixHorz-1)/5)+1;
+            xcor=mod((pixHorz-1),cameraArraySize(2))*individualViewDimension(2)+floor((pixHorz-1)/cameraArraySize(2))+1;
             
             % Each pixel in the multiview image is taken from the
             % (ycor,xcor) pixel from the 2D lightField Image
