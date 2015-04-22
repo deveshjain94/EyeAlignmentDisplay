@@ -1,0 +1,12 @@
+Height=130
+Width=200
+Initial_Frame = 1
+Final_Frame=25
+Initial_Clock=0
+Final_Clock=24
+Quality=11
+Antialias=on
+Bounding=off
+Sampling_Method=2
+Input_File_Name = "D:\Studies\Internships and Projects\LVP-MITRA\Eye Alignment Display\Multiview\IronSight.pov"
+Output_File_Name = "D:\Studies\Internships and Projects\LVP-MITRA\Eye Alignment Display\Images\IronSight\IronSight-.png"

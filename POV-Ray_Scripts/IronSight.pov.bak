@@ -1,0 +1,123 @@
+#version 3.7;
+global_settings { assumed_gamma 1.0 } 
+#default{ finish{ ambient 0.1 diffuse 0.9 }} 
+  
+#include "shapes3.inc"  
+#include "colors.inc"
+#include "textures.inc"
+#include "glass.inc"
+#include "metals.inc"
+#include "golds.inc"
+#include "stones.inc"
+#include "woods.inc"
+#include "shapes.inc"
+#include "shapes2.inc"
+#include "functions.inc"
+#include "math.inc"
+#include "transforms.inc"
+
+#declare a=-0.2+0.1*mod(clock,5);
+#declare b=0.2-0.1*floor(clock/5);
+
+camera {//right x*198/130
+   location <0,0, 1>  
+   //location <1,1, 5>
+   look_at <0,-1,0>
+}                         
+
+#declare Camera_0 = camera {/*ultra_wide_angle*/ angle 15      // front view
+                            right x*198/130
+                            location  <0,0,20>
+                            right     x*image_width/image_height
+                            look_at   <0.0 , 0 , 5>}
+#declare Camera_1 = camera {/*ultra_wide_angle*/ angle 14   // diagonal view
+                            location  <20.0 , 15.0 ,-40>
+                            right     x*image_width/image_height
+                            look_at   <0.0 , 1 , 0.0>}
+camera{Camera_0}
+// create a regular point light source
+
+
+union{ 
+
+light_source {
+  0*x                  
+  color rgb <1,1,1>   
+  translate <0,0,-19>
+}  
+
+torus { 0.35,0.15 
+        texture { pigment{ color rgb<0.35,0.60, 0.00>*0.15 }
+                  finish { phong 0.4 }
+                } // end of texture
+        scale <1,1,1> rotate<90,0,0> translate<0,0,0>
+      } // end of torus  -------------------------------              
+       
+
+plane { <0,1,0>, 0  hollow // normal vector, distance to zero ----
+
+        texture{ pigment{ color rgb<0.35,0.60, 0.00> }
+                 finish { phong 1 }
+               } // end of texture
+        scale < 1, 1, 1>
+        rotate< 90,0,0> rotate<0,0,0>
+        translate<0,0.0,-20>
+      } // end of plane ------------------------------------------
+
+
+#macro Axis_( AxisLen, Dark_Texture,Light_Texture) 
+ union{
+    cylinder { <0,-AxisLen,0>,<0,AxisLen,0>,0.05
+               texture{checker texture{Dark_Texture } 
+                               texture{Light_Texture}
+                       translate<0.1,0,0.1>}
+             }
+    cone{<0,AxisLen,0>,0.2,<0,AxisLen+0.7,0>,0
+          texture{Dark_Texture}
+         }
+         
+     cylinder { <-AxisLen,-1,0>,<-AxisLen,1,0>,0.05
+               texture{checker texture{Dark_Texture } 
+                               texture{Light_Texture}
+                       translate<0.1,0,0.1>}
+                       translate<0,0,0> rotate<0,0,90>
+             }
+             
+      cylinder { <-AxisLen,-1,0>,<-AxisLen,1,0>,0.05
+               texture{checker texture{Dark_Texture } 
+                               texture{Light_Texture}
+                       translate<0.1,0,0.1>}
+                       translate<0,0,0> rotate<90,0,90>
+             }
+     }                
+#end 
+//------------------------------------------------------------------------
+#macro AxisXYZ( AxisLenX, AxisLenY, AxisLenZ, Tex_Dark, Tex_Light)
+//--------------------- drawing of 3 Axes --------------------------------
+union{
+#if (AxisLenZ != 0)
+ object { Axis_(AxisLenZ, Tex_Dark, Tex_Light)   rotate<90,0,0>}// z-Axis
+#end // of #if 
+} // end of union
+#end// of macro "AxisXYZ( ... )"
+//------------------------------------------------------------------------
+
+#declare Texture_A_Dark  = texture {
+                               pigment{ color rgb<0,0,1>}
+                               finish { phong 1}
+                             }
+#declare Texture_A_Light = texture { 
+                               pigment{ color rgb<1,0,0>}
+                               finish { phong 1}
+                             }
+
+object{ AxisXYZ( 4.50, 3.00, 4.00, Texture_A_Dark, Texture_A_Light)}
+//-------------------------------------------------- end of coordinate axes  
+
+
+rotate<20*sin(b),20*sin(a),0>
+}
+
+
+
+     //  18*sin(a),-1-18*sin(b), 18*cos(a)

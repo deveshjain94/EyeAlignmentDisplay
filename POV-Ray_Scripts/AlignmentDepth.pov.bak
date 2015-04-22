@@ -1,0 +1,81 @@
+#version 3.7;
+global_settings { assumed_gamma 1.0 } 
+#default{ finish{ ambient 0.1 diffuse 0.9 }} 
+  
+#declare a=-0.2+0.01*mod(clock,5);
+#declare b=0.2-0.01*floor(clock/5);
+
+#include "shapes3.inc"  
+#include "colors.inc"
+#include "textures.inc"
+#include "glass.inc"
+#include "metals.inc"
+#include "golds.inc"
+#include "stones.inc"
+#include "woods.inc"
+#include "shapes.inc"
+#include "shapes2.inc"
+#include "functions.inc"
+#include "math.inc"
+#include "transforms.inc"
+
+camera {//angle 15
+right x*198/130
+   location  <0,0,3> 
+   //location <1,1, 5> 
+   //right     x*image_width/image_height
+   look_at   <0,0,0>}      
+   
+plane { <0,1,0>, 0  hollow // normal vector, distance to zero ----
+
+        texture{ pigment{ color rgb<0.35,0.60, 0.00> }
+                 finish { phong 1 }
+               } // end of texture
+        scale < 1, 1, 1>
+        rotate< 90,0,0> rotate<0,0,0>
+        translate<0,0.0,-20>
+      } // end of plane ------------------------------------------
+  
+  /*cylinder { <0.9,0,2.5>,<1,0,2>,0.30 
+           texture { pigment { color rgb<1,1,1>}
+                   //normal  { bumps 0.5 scale 0.005}  
+                     finish  { phong 0.5 reflection{ 0.00 metallic 0.00} } 
+                   } // end of texture
+           scale <0.5,0.5,0.5> rotate<0,0,0> translate<0,0,0>
+         } // end of cylinder  ------------------------------------
+                                                                      */
+#declare Dark_Texture  = texture {
+                               pigment{ color rgb<0,0,1>}
+                               finish { phong 1}
+                             }
+#declare Light_Texture = texture { 
+                               pigment{ color rgb<1,0,0>}
+                               finish { phong 1} 
+                              }
+                               
+union{ 
+
+                
+    cylinder { <0.03,0,2.8>,<0.1,0,2.4>,0.01
+               texture{checker texture{Dark_Texture } 
+                               texture{Light_Texture}
+                       translate<0,0,0>}
+             }
+    
+         
+     cylinder { <0.02,0,2.4>,<0.17,0,2.4>,0.005
+               texture{checker texture{Dark_Texture } 
+                               texture{Light_Texture}
+                       translate<0,0,0>}
+                       translate<0,0,0> rotate<0,0,0>
+             }
+             
+     cylinder { <0.02,0,2.8>,<0.17,0,2.8>,0.005
+               texture{checker texture{Dark_Texture } 
+                               texture{Light_Texture}
+                       translate<0,0,0>}
+                       translate<0,0,0> rotate<0,0,0>
+             }
+                
+rotate<10*sin(b),10*sin(a),0>     
+}                          
