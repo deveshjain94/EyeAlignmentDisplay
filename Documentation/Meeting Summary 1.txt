@@ -1,0 +1,24 @@
+Hey all,
+
+Project Goal : Build a self-alignment device using light field displays. The user should see an image/pattern on the screen only when this device is aligned correctly with the eye. 
+This will aid in the Retina Imaging Device amongst other eye diagnosis devices which require perfect alignment of the device and user's eyes.
+
+Short Term Goal:
+Get a normal image to appear 3D on a mobile phone. This will be done by attaching a parallax barrier onto the screen of the mobile phone.
+
+Individual Short Term Goals:
+Devesh : 1. Generate image for the cell phone display
+	 2. Perform simulations of how the above image looks on the retina
+
+Dolly  : Create 3D CAD model for holding the phone and the assembly 	 together (I had a doubt here. Since we are only going to be 		 sticking stuff on the cell phone. What do we need a CAD model 	 	 for? Is it for fixing the distance between the eye and the  		 mobile?)
+
+Amit   : 1. Remotely control the mobile phone since it will not be usable 	    once we put a parallax barrier on the s.creen.
+
+Future Plans :
+1. We might plan to use a simple LCD display with a microcontroller and simple I/O to give user feedback once an image is visible to freeze the alignment
+2. New CAD designs will have to be made for this.
+3. Microcontroller , LCD and I/O interfacing.
+
+General guidelines : 
+1. Follow Pushyami's mail for Documentation.
+2. Donot be restricted to the task given to you. Everyone should know about everything being done in the project.

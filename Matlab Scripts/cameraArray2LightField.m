@@ -47,7 +47,7 @@ end
 numOfImages = cameraArraySize(1)*cameraArraySize(2);
 
 % defining file structure for input and output files
-outpath = 'redbox';
+outpath = 'AlignDepth';
 datapath = ['../Images/' outpath '/'];
 filename = [datapath outpath '-'];
 filetype = '.png';
@@ -66,16 +66,18 @@ width=size(referenceFile,2);                   % Multiview Image Width
 colourChannels=size(referenceFile,3);          % Colour Channel Information
 
 % creating the lightField object
-lightFieldResolution = [cameraArraySize(1) cameraArraySize(1) height width colourChannels];
+lightFieldResolution = [cameraArraySize(1) cameraArraySize(2) height width colourChannels]
 lightField = zeros(lightFieldResolution);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Generation of 4D Light Field Data (5th Dimension contains the colour channel information)
 
 count = 1;
+nn=1;
 for ky=1:lightFieldResolution(1)
     for kx=1:lightFieldResolution(2)
-        
+        kx
+        ky
         % filename of current image
         currentFilename = [filename num2str(count) filetype];
         if count > 9
@@ -84,7 +86,7 @@ for ky=1:lightFieldResolution(1)
         
         % load image
         I = im2double(imread(currentFilename));
-        
+        nn=nn+1
         % convert to grayscale if desired
         if lightFieldResolution(5) == 1
             I = rgb2gray(I);
@@ -97,7 +99,7 @@ for ky=1:lightFieldResolution(1)
         imshow(I); drawnow;
         
         % increment counter
-        count = count + 1;
+        count = count + 1
     end
 end
 

@@ -38,7 +38,7 @@ if nargin == 0
 end
 
 % defining file structure for input and output files
-outpath = 'redbox';
+outpath = 'AlignDepth';
 datapath = ['../Images/' outpath '/'];
 filetype = '.png';
 
@@ -50,8 +50,7 @@ if mode == 0
     if nargin < 3
         cameraArraySize = [5 5];
     end
-    
-    % reading the 2D Light Field Image
+        % reading the 2D Light Field Image
     LightField2Dfilename = [datapath outpath '2DLFI' filetype];
     LightField2D = im2double(imread(LightField2Dfilename));
     

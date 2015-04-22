@@ -41,7 +41,7 @@ if nargin < 2
 end
 
 % change outpath depending on which multiview to be converted
-outpath = 'redbox';
+outpath = 'InfiniteCylinderandStuff';
 
 % defining file structure of input and outpute files
 datapath = ['../Images/' outpath '/'];
